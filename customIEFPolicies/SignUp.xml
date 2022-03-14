@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- Update the TenantId value to the Azure B2C Tenant -->
 <TrustFrameworkPolicy
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
@@ -9,6 +10,7 @@
   PublicPolicyUri="http://rkkb2c.onmicrosoft.com/B2C_1A_signup">
 
   <BasePolicy>
+    <!-- Update the TenantId value to the Azure B2C Tenant -->
     <TenantId>rkkb2c.onmicrosoft.com</TenantId>
     <PolicyId>B2C_1A_TrustFrameworkExtensions</PolicyId>
   </BasePolicy>
@@ -23,6 +25,7 @@
         <OutputClaim ClaimTypeReferenceId="givenName" PartnerClaimType="given_name"/>
         <OutputClaim ClaimTypeReferenceId="surname" PartnerClaimType="family_name"/>
         <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="email"/>
+        <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="preferred_username"/>
         <OutputClaim ClaimTypeReferenceId="objectId" PartnerClaimType="sub"/>
         <OutputClaim ClaimTypeReferenceId="tenantId" AlwaysUseDefaultValue="true" DefaultValue="{Policy:TenantObjectId}" />
       </OutputClaims>

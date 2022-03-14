@@ -1,9 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TrustFrameworkPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<!-- Update the TenantId value to the Azure B2C Tenant -->
+<TrustFrameworkPolicy 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-  xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" PolicySchemaVersion="0.3.0.0" TenantId="rkkb2c.onmicrosoft.com" PolicyId="B2C_1A_TrustFrameworkExtensions" PublicPolicyUri="http://rkkb2c.onmicrosoft.com/B2C_1A_TrustFrameworkExtensions">
+  xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" 
+  PolicySchemaVersion="0.3.0.0" 
+  TenantId="rkkb2c.onmicrosoft.com" 
+  PolicyId="B2C_1A_TrustFrameworkExtensions" 
+  PublicPolicyUri="http://rkkb2c.onmicrosoft.com/B2C_1A_TrustFrameworkExtensions">
 
   <BasePolicy>
+    <!-- Update the TenantId value to the Azure B2C Tenant -->
     <TenantId>rkkb2c.onmicrosoft.com</TenantId>
     <PolicyId>B2C_1A_TrustFrameworkLocalization</PolicyId>
   </BasePolicy>
@@ -32,7 +39,9 @@
           <InputClaim ClaimTypeReferenceId="mobileNumber" TransformationClaimType="user.mobile_number"/>
         </InputClaims>
         <InputParameters>
+          <!-- Update the value to the BlokSec Application Client Secert -->
           <InputParameter Id="auth_token" DataType="string" Value="9720ca7540a41fbb698bfeb2ac0e5173" />
+          <!-- Update the value to the BlokSec Application DID -->
           <InputParameter Id="account.appDID" DataType="string" Value="zNKkwQArNpkQimnekncsuyyw3zzxaQt1ayRo" />
         </InputParameters>
         <OutputClaims>
@@ -47,20 +56,6 @@
   <ClaimsProviders>
     <!-- Signup flow -->
     <ClaimsProvider>
-      <DisplayName>Azure Active Directory</DisplayName>
-      <!-- For extended attributes -->
-      <TechnicalProfiles>
-        <TechnicalProfile Id="AAD-Common">
-          <Metadata>
-            <!--Insert b2c-extensions-app application ID here, for example: 11111111-1111-1111-1111-111111111111-->
-            <Item Key="ClientId">75246b94-64a5-4708-8b05-bd68762c4242</Item>
-            <!--Insert b2c-extensions-app application ObjectId here, for example: 22222222-2222-2222-2222-222222222222-->
-            <Item Key="ApplicationObjectId">915164bc-3260-49ba-9626-1003d71386bc</Item>
-          </Metadata>
-        </TechnicalProfile>
-      </TechnicalProfiles>
-    </ClaimsProvider>
-    <ClaimsProvider>
       <Domain>bloksec</Domain>
       <DisplayName>BlokSec</DisplayName>
       <TechnicalProfiles>
@@ -70,7 +65,7 @@
           <Protocol Name="OpenIdConnect" />
           <Metadata>
             <Item Key="METADATA">https://api.bloksec.io/oidc/.well-known/openid-configuration</Item>
-            <!-- Update the Client ID below to the BlokSec Application ID -->
+            <!-- Update the value to the BlokSec Application DID -->
             <Item Key="client_id">zNKkwQArNpkQimnekncsuyyw3zzxaQt1ayRo</Item>
             <Item Key="response_types">code</Item>
             <Item Key="scope">openid profile email</Item>
@@ -88,7 +83,7 @@
             <OutputClaim ClaimTypeReferenceId="displayName" PartnerClaimType="name" />
             <OutputClaim ClaimTypeReferenceId="givenName" PartnerClaimType="given_name" />
             <OutputClaim ClaimTypeReferenceId="surname" PartnerClaimType="family_name" />
-            <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="email" />
+            <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="preferred_username" />
             <OutputClaim ClaimTypeReferenceId="authenticationSource" DefaultValue="socialIdpAuthentication" AlwaysUseDefaultValue="true" />
             <OutputClaim ClaimTypeReferenceId="identityProvider" PartnerClaimType="iss" />
           </OutputClaims>
@@ -129,11 +124,15 @@
       <TechnicalProfiles>
         <TechnicalProfile Id="login-NonInteractive">
           <Metadata>
+            <!-- Update the value to the Azure B2C ProxyIdentityExperienceFramework Application Id -->
             <Item Key="client_id">1ee12fac-18f3-49e8-bbea-ec254ceed405</Item>
+            <!-- Update the value to the Azure B2C IdentityExperienceFramework Application Id -->
             <Item Key="IdTokenAudience">2788eb3a-2be7-4e79-b033-919844ebcb8b</Item>
           </Metadata>
           <InputClaims>
+            <!-- Update the value to the Azure B2C ProxyIdentityExperienceFramework Application Id -->
             <InputClaim ClaimTypeReferenceId="client_id" DefaultValue="1ee12fac-18f3-49e8-bbea-ec254ceed405" />
+            <!-- Update the value to the Azure B2C IdentityExperienceFramework Application Id -->
             <InputClaim ClaimTypeReferenceId="resource_id" PartnerClaimType="resource" DefaultValue="2788eb3a-2be7-4e79-b033-919844ebcb8b" />
           </InputClaims> 
         </TechnicalProfile>
